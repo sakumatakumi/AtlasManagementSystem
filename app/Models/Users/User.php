@@ -73,7 +73,7 @@ class User extends Authenticatable
     //省略可能な場合もあり。laravel公式なドキュメントあり
     public function subjects()
     {
-        return $this->belongsToMany('App\Models\Users\Subjects', 'subject_users', 'user_id', 'subject_id')->withTimestamps(); // リレーションの定義
+        return $this->belongsToMany('App\Models\Users\Subjects', 'subject_users', 'user_id', 'subject_id'); // リレーションの定義
     }
 
     // いいねしているかどうか
