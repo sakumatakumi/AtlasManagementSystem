@@ -2,8 +2,9 @@
 
 namespace App\Exceptions;
 
-use Exception;
+use Exception; //(ExceptionsからThrowableに変更＿例外Exとエラーを同時にキャッチできる。)
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +51,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof TokenMismatchException) {
+            return redirect()->route('loginView');
+        }
+
         return parent::render($request, $exception);
     }
 }
