@@ -40,8 +40,8 @@ class RegisterFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'over_name_kana.kana' => '名前のカナは必須項目です。',
-            'under_name_kana.kana' => '名前のカナは必須項目です。',
+            'over_name_kana.kana' => 'カタカナで入力してください。',
+            'under_name_kana.kana' => 'カタカナで入力してください。',
         ];
     }
 
