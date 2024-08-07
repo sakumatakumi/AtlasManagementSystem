@@ -166,6 +166,8 @@ return [
         'sex' => '性別は必ず入力してください。',
         'birth_day' => '生年月日',
         'role.required' => '役職',
+        'post_title' => 'タイトル',
+        'post_body' => '内容'
     ],
 
 ];

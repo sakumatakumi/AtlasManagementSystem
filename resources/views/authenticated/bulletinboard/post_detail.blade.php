@@ -8,8 +8,11 @@
           <div>
           </div>
           <div>
+            @if($post->user_id == Auth::id())
             <span class="edit-modal-open" post_title="{{ $post->post_title }}" post_body="{{ $post->post }}" post_id="{{ $post->id }}">編集</span>
-            <a href="{{ route('post.delete', ['id' => $post->id]) }}">削除</a>
+            <a href="{{ route('post.delete', ['id' => $post->id]) }}" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a>
+            @csrf
+            @endif
           </div>
         </div>
 
