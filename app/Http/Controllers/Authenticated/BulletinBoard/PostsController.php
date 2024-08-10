@@ -47,7 +47,7 @@ class PostsController extends Controller
 
     public function postInput()
     {
-        $main_categories = MainCategory::get();
+        $main_categories = MainCategory::with('subCategories')->get(); // サブカテゴリーも含めて取得
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
 
@@ -84,7 +84,10 @@ class PostsController extends Controller
     //サブカテゴリー
     public function subCategoryCreate(Request $request)
     {
-        MainCategory::create(['sub_category' => $request->sub_category_name]);
+        SubCategory::create([
+            'sub_category' => $request->sub_category_name,
+            'main_category_id' => $request->main_category_id // メインカテゴリーのIDを設定
+        ]);
         return redirect()->route('post.input');
     }
 
