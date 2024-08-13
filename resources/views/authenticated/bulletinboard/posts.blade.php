@@ -28,19 +28,33 @@
   <div class="other_area border w-25">
     <div class="border m-4">
       <div class=""><a href="{{ route('post.input') }}">投稿</a></div>
-      <div class="">
-        <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
-        <input type="submit" value="検索" form="postSearchRequest">
-      </div>
-      <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
-      <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
-      <ul>
-        @foreach($categories as $category)
-        <li class="main_categories" category_id="{{ $category->id }}"><span>{{ $category->main_category }}<span></li>
-        @endforeach
-      </ul>
+      <form action="{{ route('post.show') }}" method="get" id="postSearchRequest">
+        <div class="">
+          <input type="text" placeholder="キーワードを検索" name="keyword" form="postSearchRequest">
+          <input type="submit" value="検索" form="postSearchRequest">
+      </form>
     </div>
+    <input type="submit" name="like_posts" class="category_btn" value="いいねした投稿" form="postSearchRequest">
+    <input type="submit" name="my_posts" class="category_btn" value="自分の投稿" form="postSearchRequest">
+    <ul>
+      @foreach($categories as $category)
+      <li class="main_categories" category_id="{{ $category->id }}">
+        <span>{{ $category->main_category }}</span>
+        @if($category->subCategories->isNotEmpty())
+        <ul>
+          @foreach($category->subCategories as $sub_category)
+          <li class="sub_categories" data-sub-category-id="{{ $sub_category->id }}">
+            <a href="{{ route('post.show', ['sub_category_id' => $sub_category->id]) }}">{{ $sub_category->sub_category }}</a>
+          </li>
+          @endforeach
+        </ul>
+        @endif
+      </li>
+      @endforeach
+    </ul>
+
   </div>
-  <form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
+</div>
+<form action="{{ route('post.show') }}" method="get" id="postSearchRequest"></form>
 </div>
 @endsection
