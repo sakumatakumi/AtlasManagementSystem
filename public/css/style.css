@@ -29,6 +29,7 @@ li{
 
 /* トップページ */
 .user_status{
+
   border-radius:10px;
   background:#FFF;
 }
@@ -48,6 +49,9 @@ li{
 }
 .calendar-td{
   min-width:100px;
+}
+.calender-cl{
+  background: #cdcdcd;
 }
 .day_part{
   color:#494949;
