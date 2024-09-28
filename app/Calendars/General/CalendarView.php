@@ -55,23 +55,23 @@ class CalendarView
         if (in_array($day->everyDay(), $day->authReserveDay())) {
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if ($reservePart == 1) {
-            $reservePart = "リモ1部";
+            $reservePartWord = "リモ1部";
           } else if ($reservePart == 2) {
-            $reservePart = "リモ2部";
+            $reservePartWord = "リモ2部";
           } else if ($reservePart == 3) {
-            $reservePart = "リモ3部";
+            $reservePartWord = "リモ3部";
           }
-          if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePart . '</p>';
+          if ($startDay <= $day->everyDay() && $toDay > $day->everyDay()) {
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePartWord . '</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">';
             $html[] = '<input type="hidden" name="getDate[]" value="' . $day->everyDay() . '" form="reserveParts">';
           } else {
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePart . '</button>';
+            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePartWord . '</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">';
             $html[] = '<input type="hidden" name="getDate[]" value="' . $day->everyDay() . '" form="reserveParts">';
           }
         } else {
-          if ($day->everyDay() && $day->everyDay() < $toDay) {
+          if ($day->everyDay() && $day->everyDay() <= $toDay) {
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">受付終了</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
           } else {

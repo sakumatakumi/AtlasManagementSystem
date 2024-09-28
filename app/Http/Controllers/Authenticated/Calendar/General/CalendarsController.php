@@ -32,7 +32,7 @@ class CalendarsController extends Controller
             foreach ($reserveDays as $key => $value) {
                 $reserve_settings = ReserveSettings::where('setting_reserve', $key)->where('setting_part', $value)->first();
 
-                dd($reserve_settings);
+                // dd($reserve_settings);
 
                 $reserve_settings->decrement('limit_users');
                 $reserve_settings->users()->attach(Auth::id());
