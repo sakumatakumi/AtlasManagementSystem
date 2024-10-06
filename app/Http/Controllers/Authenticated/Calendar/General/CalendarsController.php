@@ -46,18 +46,7 @@ class CalendarsController extends Controller
 
     public function delete(Request $request)
     {
-        dd($request);
-        $setting_reserve = $request->input('date');
-        $setting_part = $request->input('part');
-
-        $setting_reserve = ReserveSettings::where('setting_reserve', $setting_reserve)->where('setting_part', $setting_part)->first();
-        // dd($setting_reserve);
-        $setting_reserve->increment('limit_users');
-        $setting_reserve->users()->detach(Auth::id());
-
-        // インクリメント(+5)。第二引数がない場合+１になる
-        // $setting_reserve->increment('limit_users', 5);
-
-        return redirect()->route('calendar.general.show', ['user_id' => Auth::id()]);
+        $reservationId = $request->input('delete_date');
+        $reservation = Reservation::where('id', $reservationId)->first();
     }
 }
