@@ -167,7 +167,8 @@ return [
         'birth_day' => '生年月日',
         'role.required' => '役職',
         'post_title' => 'タイトル',
-        'post_body' => '内容'
+        'post_body' => '内容',
+        'comment' => 'コメント'
     ],
 
 ];
