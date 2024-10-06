@@ -56,19 +56,22 @@ class CalendarView
           $reservePart = $day->authReserveDate($day->everyDay())->first()->setting_part;
           if ($reservePart == 1) {
             $reservePartWord = "リモ1部";
+            $reservePartText = "1部参加";
           } else if ($reservePart == 2) {
             $reservePartWord = "リモ2部";
+            $reservePartText = "2部参加";
           } else if ($reservePart == 3) {
             $reservePartWord = "リモ3部";
+            $reservePartText = "3部参加";
           }
-          if ($startDay <= $day->everyDay() && $toDay > $day->everyDay()) {
-            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePartWord . '</p>';
+          if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
+            $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePartText . '</p>';
             $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">';
-            $html[] = '<input type="hidden" name="getDate[]" value="' . $day->everyDay() . '" form="reserveParts">';
+            $html[] = '<input type="hidden" name="getDate[]" value="' . $day->everyDay() . '" form="reserveDates">';
           } else {
-            $html[] = '<button type="submit" class="btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePartWord . '</button>';
+            $html[] = '<button type="submit" class="delete-modal-open btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="' . $day->authReserveDate($day->everyDay())->first()->setting_reserve . '">' . $reservePartWord . '</button>';
             $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">';
-            $html[] = '<input type="hidden" name="getDate[]" value="' . $day->everyDay() . '" form="reserveParts">';
+            $html[] = '<input type="hidden" name="getDate[]" value="' . $day->everyDay() . '" form="reserveDates">';
           }
         } else {
           if ($day->everyDay() && $day->everyDay() <= $toDay) {
