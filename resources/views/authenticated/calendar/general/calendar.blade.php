@@ -9,26 +9,34 @@
       <div class="">
         {!! $calendar->render() !!}
       </div>
-
-      <div class="modal"><!-- モーダルウィンドウ本体の囲み -->
-        <div class="modal__bg">
-          <div class="modal-content"><!-- コンテンツエリア -->
-            <p class="txt">予約日：<span id="modal-reservation-date"></span></p>
-            <p class="txt">予約時間:<span id="modal-reservation-time"></span></p>
-            <p class="txt">上記の予約をキャンセルしてもよろしいですか？</p>
-          </div>
-          <div class="btn-area">
-            <button type="button" class="modal-close">閉じる</button><!-- 閉じるボタン -->
-            <button type="button" class="modal-cancel">キャンセル</button><!-- キャンセルボタン -->
-          </div>
-        </div>
-      </div>
     </div>
-
-  </div>
-  <div class="text-right w-75 m-auto">
-    <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts">
+    <div class="text-right w-75 m-auto">
+      <input type="submit" class="btn btn-primary" value="予約する" form="reserveParts">
+    </div>
   </div>
 </div>
+
+<div class="modal js-modal">
+  <div class="modal__bg js-modal-close"></div>
+  <div class="modal__content">
+    <form action="{{ route('deleteParts') }}" method="post">
+      @csrf
+      <div class="w-100">
+        <div class="modal-inner-title w-50 m-auto">
+          <p>予約日：<span class="reserve_date_display"></span></p>
+          <input type="hidden" name="date" class="reserve_date" value="">
+
+          <p>時間：<span class="reserve_part_text"></span></p>
+          <input type="hidden" name="part" class="reserve_part" value="">
+
+          <p>上記の予約をキャンセルしてもよろしいですか？</p>
+        </div>
+        <div class="w-50 m-auto delete-modal-btn d-flex">
+          <a class="js-modal-close btn btn-primary d-inline-block" href="">閉じる</a>
+          <input type="submit" class="m-auto btn btn-danger d-block" value="キャンセル">
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
 @endsection
