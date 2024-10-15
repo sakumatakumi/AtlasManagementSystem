@@ -19,7 +19,7 @@ class PostsController extends Controller
     public function show(Request $request)
     {
         // 初期クエリを定義
-        $query = Post::with('user', 'postComments')->withCount('likes', 'comments');
+        $query = Post::with('user', 'postComments', 'subCategories')->withCount('likes', 'comments');
 
         // ①キーワード検索
         if (!empty($request->keyword)) {
@@ -31,10 +31,14 @@ class PostsController extends Controller
         }
 
         // ④サブカテゴリーの完全一致
-        if (!empty($request->category_word)) {
-            $subCategoryId = $request->category_word;
-            $query->where('sub_category_id', $subCategoryId);
+        if (!empty($request->sub_category_id)) {
+            $subCategoryId = $request->sub_category_id;
+            $query->whereHas('subCategories', function ($q) use ($subCategoryId) {
+                $q->where('sub_category_id', $subCategoryId);
+            });
         }
+
+        // dd($request);
 
         // ②いいねした投稿のみ表示
         if (!empty($request->like_posts)) {
@@ -51,6 +55,7 @@ class PostsController extends Controller
         $posts = $query->get();
 
         $categories = MainCategory::with('subCategories')->get();
+        // dd($categories);
         $like = new Like;
         $post_comment = new Post;
 

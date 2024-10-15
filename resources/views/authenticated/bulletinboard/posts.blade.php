@@ -6,10 +6,10 @@
     <p class="w-75 m-auto">投稿一覧</p>
     @foreach($posts as $post)
     <div class="post_area border w-75 m-auto p-3">
-      <p><span class="subCategory_choice">{{ $post->subCategories->first()->sub_category }}</span></p>
       <p><span>{{ $post->user->over_name }}</span><span class="ml-3">{{ $post->user->under_name }}</span>さん</p>
       <p><a href="{{ route('post.detail', ['id' => $post->id]) }}">{{ $post->post_title }}</a></p>
       <div class="post_bottom_area d-flex">
+        <p><span class="subCategory_choice">{{ $post->subCategories->first()->sub_category }}</span></p>
         <div class="d-flex post_status">
           <div class="mr-5">
             <i class="fa fa-comment"></i><span class="">{{ $post->comments_count }}</span>

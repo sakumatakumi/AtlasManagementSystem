@@ -96,7 +96,7 @@ li{
 
 /* 掲示板 */
 .sub_categories{
-  display:none;
+  /* display:none; */
 }
 .post_create_area{
   background:#FFF;
