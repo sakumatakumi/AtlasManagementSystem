@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categories\MainCategory;
 use App\Models\Categories\SubCategory;
+use Illuminate\Support\Facades\DB;
 use App\Models\Posts\Post;
 use App\Models\Posts\PostComment;
 use App\Models\Posts\Like;
@@ -71,13 +72,18 @@ class PostsController extends Controller
 
     public function postCreate(PostFormRequest $request)
     {
+
+        DB::beginTransaction();
+
         $post = Post::create([
             'user_id' => Auth::id(),
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
 
-        $post->subCategories()->attach($request->sub_category_id);
+        $post->subCategories()->attach($request->post_category_id);
+
+        DB::commit();
 
         return redirect()->route('post.show');
     }

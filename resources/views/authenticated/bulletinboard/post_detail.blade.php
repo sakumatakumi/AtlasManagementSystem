@@ -16,7 +16,7 @@
         <div class="detail_inner_head">
           <div>
             <p>
-              <span>{{ $post->user->over_name }}</span>
+              <span class="subCategory_choice">{{ $post->subCategories->first()->sub_category }}</span>
             </p>
           </div>
           <div>
