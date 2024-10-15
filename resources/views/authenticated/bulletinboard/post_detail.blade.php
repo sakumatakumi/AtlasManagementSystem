@@ -15,7 +15,9 @@
 
         <div class="detail_inner_head">
           <div>
-
+            <p>
+              <span>{{ $post->user->over_name }}</span>
+            </p>
           </div>
           <div>
             @if($post->user_id == Auth::id())

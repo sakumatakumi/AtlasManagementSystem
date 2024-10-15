@@ -68,6 +68,7 @@ class PostsController extends Controller
         return view('authenticated.bulletinboard.post_create', compact('main_categories'));
     }
 
+
     public function postCreate(PostFormRequest $request)
     {
         $post = Post::create([
@@ -75,6 +76,9 @@ class PostsController extends Controller
             'post_title' => $request->post_title,
             'post' => $request->post_body
         ]);
+
+        $post->subCategories()->attach($request->sub_category_id);
+
         return redirect()->route('post.show');
     }
 
@@ -100,7 +104,9 @@ class PostsController extends Controller
     //メインカテゴリー
     public function mainCategoryCreate(Request $request)
     {
-        MainCategory::create(['main_category' => $request->main_category_name]);
+        MainCategory::create([
+            'main_category' => $request->main_category_name
+        ]);
         return redirect()->route('post.input');
     }
     //サブカテゴリー

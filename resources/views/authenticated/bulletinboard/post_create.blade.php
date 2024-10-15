@@ -4,6 +4,9 @@
 <div class="post_create_container d-flex">
   <div class="post_create_area border w-50 m-5 p-5">
     <div class="">
+      @if($errors->first('post_category_id'))
+      <span class="error_message">{{ $errors->first('post_category_id') }}</span>
+      @endif
       <p class="mb-0">カテゴリー</p>
       <select class="w-100" form="postCreate" name="post_category_id">
         @foreach($main_categories as $main_category)
