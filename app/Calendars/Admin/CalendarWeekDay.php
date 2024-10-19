@@ -39,15 +39,15 @@ class CalendarWeekDay
     $html[] = '<div class="text-left">';
     if ($one_part) {
       $one_part_count = $one_part->users->count();
-      $html[] = '<p class="day_part m-0 pt-1">1部 ' . $one_part_count . '</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="' . route('calendar.admin.detail', ['part' => 1, 'date' => $ymd]) . '">1部</a> ' . $one_part_count . '</p>';
     }
     if ($two_part) {
       $two_part_count = $two_part->users->count();
-      $html[] = '<p class="day_part m-0 pt-1">2部 ' . $two_part_count . '</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="' . route('calendar.admin.detail', ['part' => 2, 'date' => $ymd]) . '">2部</a> ' . $two_part_count . '</p>';
     }
     if ($three_part) {
       $three_part_count = $three_part->users->count();
-      $html[] = '<p class="day_part m-0 pt-1">3部 ' . $three_part_count . '</p>';
+      $html[] = '<p class="day_part m-0 pt-1"><a href="' . route('calendar.admin.detail', ['part' => 3, 'date' => $ymd]) . '">3部</a> ' . $three_part_count . '</p>';
     }
     $html[] = '</div>';
 
