@@ -66,12 +66,12 @@ class CalendarView
           }
           if ($startDay <= $day->everyDay() && $toDay >= $day->everyDay()) {
             $html[] = '<p class="m-auto p-0 w-75" style="font-size:12px">' . $reservePartText . '</p>';
-            $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">';
-            $html[] = '<input type="hidden" name="getDate[]" value="' . $day->everyDay() . '" form="reserveDates">';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            $html[] = '<input type="hidden" name="getDate[]" value="" form="reserveDates">';
           } else {
             $html[] = '<button type="submit" class="delete-modal-open btn btn-danger p-0 w-75" name="delete_date" style="font-size:12px" value="" days="' . $day->everyDay() . '" reservePart="' . $reservePart . '">' . $reservePartWord . '</button>';
-            $html[] = '<input type="hidden" name="getPart[]" value="' . $reservePart . '" form="reserveParts">';
-            $html[] = '<input type="hidden" name="getDate[]" value="' . $day->everyDay() . '" form="reserveDates">';
+            $html[] = '<input type="hidden" name="getPart[]" value="" form="reserveParts">';
+            $html[] = '<input type="hidden" name="getDate[]" value="" form="reserveDates">';
           }
         } else {
           if ($day->everyDay() && $day->everyDay() <= $toDay) {
