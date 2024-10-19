@@ -168,7 +168,8 @@ return [
         'role.required' => '役職',
         'post_title' => 'タイトル',
         'post_body' => '内容',
-        'comment' => 'コメント'
+        'comment' => 'コメント',
+        'post_category_id' => 'カテゴリー',
     ],
 
 ];
